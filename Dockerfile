@@ -2,7 +2,7 @@
 #
 # Version: 0.0.1
 
-FROM fedora:20
+FROM fedora:21
 MAINTAINER Nicholas Moore
 
 ADD ttyjs-config.json /
