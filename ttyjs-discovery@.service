@@ -1,0 +1,14 @@
+[Unit]
+Description=Announce ttyjs
+BindsTo=ttyjs@%i.service
+After=ttyjs@%i.service
+
+[Service]
+ExecStart=/bin/sh -c "while true; do \
+          /usr/bin/etcdctl set /production/ttyjs/`hostname`.pdx4.rlgeex.net `hostname`.pdx4.rlgeex.net:$(echo $(/usr/bin/docker port ttyjs%i 3000) | cut -d':' -f2) -ttl 60; \
+          /usr/bin/sleep 45; \
+          done"
+ExecStop=/usr/bin/etcdctl rm /production/ttyjs/`hostname`.pdx4.rlgeex.net
+
+[X-Fleet]
+MachineOf=ttyjs@%i.service
