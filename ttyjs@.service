@@ -11,7 +11,7 @@ Restart=always
 KillMode=none
 ExecStartPre=-/usr/bin/docker stop ttyjs
 ExecStartPre=-/usr/bin/docker rm ttyjs
-ExecStart=/usr/bin/docker run -P=true --name=ttyjs%i nicholasvmoore/docker-ttyjs
+ExecStart=/usr/bin/docker run --rm -P=true --name=ttyjs%i nicholasvmoore/docker-ttyjs
 ExecStop=/usr/bin/docker stop ttyjs
 
 [Install]
